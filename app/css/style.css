@@ -184,11 +184,14 @@ label > .bi {
   background-color: var(--white);
   box-shadow: var(--shadow) 0px 2px 8px 0px;
   border-radius: 5px;
+  visibility: visible;
+  transform: scaleY(1);
+  transform-origin: 0% 0%;
   transition: all 300ms;
 }
 
 .hidden {
-  /* transform: translateX(-120%); */
+  transform: scaleY(0);
   visibility: collapse;
   opacity: 0;
 }
@@ -199,9 +202,10 @@ label > .bi {
 
 .countries {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fill, 300px);
   gap: 3.125rem;
   padding-top: 2rem;
+  place-content: space-around;
 }
 
 .countries .country {
@@ -210,9 +214,10 @@ label > .bi {
   /* flex-wrap: 1; */
   flex-direction: column;
   height: 420px;
-  background-color: darkgray;
+  /* background-color: darkgray; */
   box-shadow: var(--shadow) 0px 2px 8px 0px;
   border-radius: 4px;
+  cursor: pointer;
 }
 
 .part {
@@ -223,4 +228,25 @@ label > .bi {
 
 .flag {
   background-color: aquamarine;
+}
+
+.details {
+  padding: 1.25rem;
+  font-size: 1.25rem;
+}
+
+.details .country-name {
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-bottom: 1.125rem;
+}
+
+.details .desc {
+  font-size: 1.125rem;
+  font-weight: 600;
+  padding-bottom: 0.4rem;
+}
+
+.details span {
+  font-weight: 300;
 }
