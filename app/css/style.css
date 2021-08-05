@@ -1,0 +1,16 @@
+/* Font Import - 300,600,800 */
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
+
+/* Variables */
+:root {
+  /* Dark Mode */
+  --td-dark-blue: hsl(209, 23%, 22%);
+  --td-very-dark-blue: hsl(207, 26%, 17%);
+
+  /* Light Mode */
+  --tl-very-dark-blue: hsl(200, 15%, 8%);
+  --tl-dark-gray: hsl(0, 0%, 52%);
+  --tl-light-gray: hsl(0, 0%, 98%);
+
+  --white: hsl(0, 0%, 100%);
+}
