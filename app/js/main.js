@@ -7,11 +7,13 @@ const chevronIcon = document.querySelector(".bi.bi-chevron-down");
 const themeSwitchBtn = document.querySelector("#theme__switch");
 
 themeSwitchBtn.addEventListener("click", function (e) {
-  console.log(e.target.closest(".theme__switch"));
-  //  { okay, okay2 } = e.target.closest(".theme__switch").children;
+  const moon = e.target.closest(".theme__switch").firstElementChild;
 
-  // console.log(okay, okay2);
-  // console.log(e.target.firstElementChild);
+  //change the moon icon
+  moon.classList.toggle("bi-moon");
+  moon.classList.toggle("bi-moon-fill");
+
+  //add dark theme class
   document.body.classList.toggle("dark-theme");
 });
 

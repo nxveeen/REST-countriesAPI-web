@@ -108,10 +108,9 @@ header .title {
   height: 50%;
 }
 
-.theme__switch svg {
-  height: 100%;
-  width: 20px;
-  margin-right: 6px;
+.theme__switch i {
+  font-size: 1rem;
+  margin-right: 0.4rem;
 }
 
 main {
