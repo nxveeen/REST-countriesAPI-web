@@ -90,6 +90,8 @@ a {
   padding: 0 1.25rem;
 }
 
+/*-------------------------------- Main page classes--------------------------- */
+
 header {
   position: relative;
   height: 5rem;
@@ -285,7 +287,80 @@ label i {
   font-weight: 300;
 }
 
-/* Media-queries */
+/*-------------------------- Details Page Classes --------------------- */
+.btn.back {
+  height: 2.5rem;
+  width: 120px;
+  margin-bottom: 3rem;
+  font-size: 1.125rem;
+  box-shadow: var(--theme-shadow) 0px 2px 8px 0px;
+}
+
+.back i {
+  /* font-weight: bold; */
+  margin-right: 0.6rem;
+  font-size: 1.3rem;
+}
+
+.container-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.container-flag {
+  height: 15.75rem;
+  width: 100%;
+  background: aquamarine;
+}
+
+.container-desc {
+  height: auto;
+  width: 100%;
+  padding-top: 2rem;
+  /* background: rgba(0, 0, 0, 0.08); */
+}
+
+.container-desc h3 {
+  font-size: 1.25rem;
+}
+
+.container-desc .sect {
+  margin: 1.5rem 0;
+}
+
+.sect p {
+  font-size: var(--sm);
+  font-weight: 600;
+  padding-bottom: 1rem;
+}
+
+.sect span {
+  font-weight: 300;
+}
+
+.sect .flex {
+  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, auto));
+  gap: 0.5rem;
+}
+
+.country-btn {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, auto));
+  gap: 1rem;
+  place-content: space-around;
+  /* font-size: 1rem; */
+  padding: 0.8rem 0.5rem;
+  box-shadow: var(--theme-shadow) 0px 2px 8px 0px;
+}
+
+/*-------------------------- Media-queries ----------------------------*/
 
 @media screen and (min-width: 900px) {
   .wrapper {
