@@ -172,7 +172,7 @@ label i {
 .dropdown {
   /* margin-top: 2.5rem; */
   padding: 0.5rem;
-  padding-top: 2.5rem;
+  padding-top: 3rem;
   font-size: 1.125rem;
   font-weight: 600;
   overflow: hidden;
@@ -315,7 +315,7 @@ label i {
   }
 
   .search-box input[type="text"] {
-    font-size: var(--md);
+    font-size: var(--sm);
   }
 
   .dropdown {
@@ -334,6 +334,10 @@ label i {
 
   .countries.wrapper {
     padding: 0;
+  }
+
+  .details {
+    font-size: var(--sm);
   }
 
   .details .country-name {
