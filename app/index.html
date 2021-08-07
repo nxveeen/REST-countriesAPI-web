@@ -18,6 +18,7 @@
 
 <body class="light-theme">
 
+    <!-- navbar or header -->
     <header class="wrapper flex">
         <p class="title">Where in the World?</p>
         <div class="theme__switch flex" id="theme__switch">
@@ -25,15 +26,22 @@
             <p>Dark Mode</p>
         </div>
     </header>
+    <!-- navbar or header end-->
 
+
+    <!-- main wrapper -->
     <main class="wrapper">
+
+        <!-- search box -->
         <div class="search-box flex">
             <label class="search-label">
                 <i class="bi bi-search"></i>
                 <input type="text" placeholder="Search for a country...">
             </label>
         </div>
+        <!-- serach box end -->
 
+        <!-- dropdown menu for region select -->
         <div class="dropdown">
             <button class="btn flex" id="dropdownBtn">
                 <p>
@@ -49,10 +57,12 @@
                 <li>Oceania</li>
             </ul>
         </div>
+        <!-- dropdown ends here -->
 
+        <!-- Countries wrapper -->
         <div class="countries wrapper">
-            <!-- <a href="#"> -->
-            <div class="country flex" onclick="window.open('http://127.0.0.1:5500/app/details.html')">
+            <!-- coutries list with the help of grid -->
+            <div class="country flex" onclick="window.open('http://127.0.0.1:5500/app/details.html','_self')">
                 <div class="part flag">
                     <img src="https://restcountries.eu/data/tza.svg" alt="flag" srcset="" class="flag">
                 </div>
@@ -84,6 +94,44 @@
                 <div class="part flag"></div>
                 <div class="part details"></div>
             </div>
+
+            <div class="country flex">
+                <div class="part flag"></div>
+                <div class="part details"></div>
+            </div>
+            <div class="country flex">
+                <div class="part flag"></div>
+                <div class="part details"></div>
+            </div>
+            <div class="country flex">
+                <div class="part flag"></div>
+                <div class="part details"></div>
+            </div>
+            <div class="country flex">
+                <div class="part flag"></div>
+                <div class="part details"></div>
+            </div>
+            <div class="country flex">
+                <div class="part flag"></div>
+                <div class="part details"></div>
+            </div>
+            <div class="country flex">
+                <div class="part flag"></div>
+                <div class="part details"></div>
+            </div>
+            <div class="country flex">
+                <div class="part flag"></div>
+                <div class="part details"></div>
+            </div>
+            <div class="country flex">
+                <div class="part flag"></div>
+                <div class="part details"></div>
+            </div>
+            <div class="country flex">
+                <div class="part flag"></div>
+                <div class="part details"></div>
+            </div>
+
 
 
         </div>
