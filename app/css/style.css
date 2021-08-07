@@ -262,8 +262,10 @@ label i {
 }
 
 .flag {
-  background-color: aquamarine;
-  height: 50%;
+  /* background-color: aquamarine; */
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .details {
@@ -315,7 +317,7 @@ label i {
 .container-flag {
   height: 15.75rem;
   width: 100%;
-  background: aquamarine;
+  /* background: aquamarine; */
 }
 
 .container-desc {
@@ -347,7 +349,7 @@ label i {
   justify-content: space-around;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, auto));
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .country-btn {
@@ -363,6 +365,7 @@ label i {
 /*-------------------------- Media-queries ----------------------------*/
 
 @media screen and (min-width: 900px) {
+  /*--------------------- Main page-------------------- */
   .wrapper {
     padding: 0 6.5rem;
   }
@@ -417,5 +420,73 @@ label i {
 
   .details .country-name {
     margin: 1.125rem auto;
+  }
+
+  /*-------------------- Detail page-------------------- */
+  .container-detail {
+    flex-direction: row;
+    align-items: unset;
+    margin-top: 5rem;
+  }
+
+  .container-flag {
+    display: grid;
+    place-items: center;
+    height: 25rem;
+    background-color: unset;
+    margin-top: 1rem;
+  }
+
+  .container-flag .flag {
+    width: 560px;
+    height: 100%;
+    /* background-color: aquamarine; */
+    border: none;
+    border-radius: 8px;
+  }
+
+  .container-desc {
+    display: grid;
+    grid-template-areas:
+      "title ."
+      "des1 des2"
+      "foot foot";
+    padding: 1rem 0;
+    /* padding-left: 3rem; */
+    justify-content: space-around;
+  }
+
+  .country-title {
+    grid-area: title;
+    font-size: var(--lg);
+  }
+
+  .sect p {
+    font-size: 1rem;
+  }
+
+  .des1 {
+    grid-area: des1;
+  }
+
+  .des2 {
+    grid-area: des2;
+  }
+
+  .foot {
+    display: flex;
+    align-items: center;
+    grid-area: foot;
+    margin: 0;
+    align-items: baseline;
+  }
+
+  .border {
+    flex: 2;
+  }
+
+  .foot .surround {
+    /* display: flex; */
+    flex: 5;
   }
 }
