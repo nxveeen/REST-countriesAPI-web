@@ -1,7 +1,7 @@
 "use strict";
 
 const btnDropdown = document.querySelector("#dropdownBtn");
-const dropdownMenu = document.querySelector(".dropdown-menu");
+const regions = document.querySelector(".country-change");
 const chevronIcon = document.querySelector(".bi.bi-chevron-down");
 const themeSwitchBtn = document.querySelector("#theme__switch");
 const searchCountry = document.querySelector("#search");
@@ -54,16 +54,19 @@ function showPosition(position) {
 getLocation();
 
 //----------------fetch data from RestCountries API----------------
-let data;
-const getData = async function (countryName) {
+let dataByName;
+let dataByRegion;
+
+// fetching countries by name
+const getCountriesByName = async function (countryName) {
   if (countryName) {
     const res = await fetch(
       `https://restcountries.eu/rest/v2/name/${countryName}`
     );
-    data = await res.json();
+    dataByName = await res.json();
 
-    if (data) {
-      console.log(data);
+    if (dataByName) {
+      console.log(dataByName);
       // let everyNames = [];
       // data.forEach((c) => {
       //   const name = c.altSpellings.join("-").replace(/ /g, "").toLowerCase();
@@ -74,13 +77,42 @@ const getData = async function (countryName) {
   }
 };
 
-// getData();
-let country = "";
-console.log(searchCountry);
+// fetching countries by region
+const getCountriesByRegion = async function (region) {
+  if (region) {
+    const res = await fetch(
+      `https://restcountries.eu/rest/v2/region/${region}`
+    );
+    dataByRegion = await res.json();
+
+    if (dataByRegion) {
+      console.log(dataByRegion);
+      // let everyNames = [];
+      // data.forEach((c) => {
+      //   const name = c.altSpellings.join("-").replace(/ /g, "").toLowerCase();
+      //   everyNames = [...everyNames, name];
+      // });
+      // console.log(everyNames);
+    }
+  }
+};
+
+//------------------sort/show countries by name------------------
+
 searchCountry.addEventListener("input", function (e) {
+  let country = "";
   country = e.target.value;
   console.log(country);
-  getData(country);
+  getCountriesByName(country);
+});
+
+//------------------sort/show countries by region------------------
+regions.addEventListener("click", function (e) {
+  // console.log(e.target.dataset.region);
+  // console.log(e.target.textContent);
+  // console.log(btnDropdown.firstElementChild);
+  getCountriesByRegion(e.target.dataset.region);
+  btnDropdown.firstElementChild.textContent = `${e.target.textContent}`;
 });
 
 //------------------ Switch theme funtionality --------------------
@@ -95,11 +127,11 @@ themeSwitchBtn.addEventListener("click", function (e) {
   document.body.classList.toggle("dark-theme");
 });
 
-//dropdown mechanism
+//------------------dropdown mechanism------------------
 if (window.location.pathname === "/app/index.html") {
   btnDropdown.addEventListener("click", function (e) {
     e.preventDefault();
-    dropdownMenu.classList.toggle("hidden");
+    regions.classList.toggle("hidden");
     chevronIcon.classList.toggle("rotate");
   });
 }
@@ -107,6 +139,8 @@ if (window.location.pathname === "/app/index.html") {
 document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
     chevronIcon.classList.remove("rotate");
-    dropdownMenu.classList.add("hidden");
+    regions.classList.add("hidden");
   }
 });
+
+//-------------------update the UI-------------------

@@ -376,7 +376,7 @@ label i {
 
   header .theme__switch i {
     font-size: var(--md);
-    margin-top: 5px;
+    /* margin-top: 5px; */
   }
 
   .search-box {
