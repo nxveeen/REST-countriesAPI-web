@@ -5,6 +5,7 @@ const regions = document.querySelector(".country-change");
 const chevronIcon = document.querySelector(".bi.bi-chevron-down");
 const themeSwitchBtn = document.querySelector("#theme__switch");
 const searchCountry = document.querySelector("#search");
+const countryContainer = document.querySelector(".countries");
 
 // ----------------get visitor's location ----------------
 function getLocation() {
@@ -86,7 +87,25 @@ const getCountriesByRegion = async function (region) {
     dataByRegion = await res.json();
 
     if (dataByRegion) {
-      console.log(dataByRegion);
+      // console.log(dataByRegion);
+
+      dataByRegion.forEach((c) => {
+        // console.log(c.name);
+        countryContainer.insertAdjacentHTML(
+          "beforeend",
+          ` <div class="country flex" onclick="window.open('http://127.0.0.1:5500/app/details.html','_self')">
+          <div class="part flag">
+              <img src="${c.flag}" alt="" srcset="" class="flag">
+          </div>
+          <div class="part details">
+              <p class="country-name">${c.name}</p>
+              <p class="desc">Population: <span>${c.population}</span></p>
+              <p class="desc">Region: <span>${c.region}</span></p>
+              <p class="desc">Capital: <span>${c.capital}</span></p>
+          </div>
+      </div>`
+        );
+      });
       // let everyNames = [];
       // data.forEach((c) => {
       //   const name = c.altSpellings.join("-").replace(/ /g, "").toLowerCase();
@@ -111,6 +130,7 @@ regions.addEventListener("click", function (e) {
   // console.log(e.target.dataset.region);
   // console.log(e.target.textContent);
   // console.log(btnDropdown.firstElementChild);
+  countryContainer.innerHTML = "";
   getCountriesByRegion(e.target.dataset.region);
   btnDropdown.firstElementChild.textContent = `${e.target.textContent}`;
 });
@@ -128,7 +148,7 @@ themeSwitchBtn.addEventListener("click", function (e) {
 });
 
 //------------------dropdown mechanism------------------
-if (window.location.pathname === "/app/index.html") {
+if (window.location.pathname === "/app/index.html" || "/app/") {
   btnDropdown.addEventListener("click", function (e) {
     e.preventDefault();
     regions.classList.toggle("hidden");
