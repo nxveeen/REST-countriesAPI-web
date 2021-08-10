@@ -6,6 +6,11 @@ const chevronIcon = document.querySelector(".bi.bi-chevron-down");
 const themeSwitchBtn = document.querySelector("#theme__switch");
 const searchCountry = document.querySelector("#search");
 const countryContainer = document.querySelector(".countries");
+const form = document.querySelector(".form");
+
+window.addEventListener("load", function (e) {
+  getCountriesByRegion("asia");
+});
 
 // ----------------get visitor's location ----------------
 function getLocation() {
@@ -74,6 +79,25 @@ const getCountriesByName = async function (countryName) {
       //   everyNames = [...everyNames, name];
       // });
       // console.log(everyNames);
+
+      dataByName.forEach((c) => {
+        countryContainer.insertAdjacentHTML(
+          "beforeend",
+          ` <div class="country flex">
+          <div class="part flag">
+              <img src="${c.flag}" alt="" srcset="" class="flag">
+          </div>
+          <div class="part details">
+              <p class="country-name">${c.name}</p>
+              <p class="desc">Population: <span>${new Intl.NumberFormat(
+                navigator.language
+              ).format(c.population)}</span></p>
+              <p class="desc">Region: <span>${c.region}</span></p>
+              <p class="desc">Capital: <span>${c.capital}</span></p>
+          </div>
+      </div>`
+        );
+      });
     }
   }
 };
@@ -93,13 +117,15 @@ const getCountriesByRegion = async function (region) {
         // console.log(c.name);
         countryContainer.insertAdjacentHTML(
           "beforeend",
-          ` <div class="country flex" onclick="window.open('http://127.0.0.1:5500/app/details.html','_self')">
+          ` <div class="country flex">
           <div class="part flag">
               <img src="${c.flag}" alt="" srcset="" class="flag">
           </div>
           <div class="part details">
               <p class="country-name">${c.name}</p>
-              <p class="desc">Population: <span>${c.population}</span></p>
+              <p class="desc">Population: <span>${new Intl.NumberFormat(
+                navigator.language
+              ).format(c.population)}</span></p>
               <p class="desc">Region: <span>${c.region}</span></p>
               <p class="desc">Capital: <span>${c.capital}</span></p>
           </div>
@@ -118,10 +144,13 @@ const getCountriesByRegion = async function (region) {
 
 //------------------sort/show countries by name------------------
 
-searchCountry.addEventListener("input", function (e) {
-  let country = "";
-  country = e.target.value;
-  console.log(country);
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  let country = e.target.querySelector("#search").value;
+
+  // country = e.target.value;
+  // console.log(country);
+  countryContainer.innerHTML = "";
   getCountriesByName(country);
 });
 
@@ -130,9 +159,12 @@ regions.addEventListener("click", function (e) {
   // console.log(e.target.dataset.region);
   // console.log(e.target.textContent);
   // console.log(btnDropdown.firstElementChild);
-  countryContainer.innerHTML = "";
-  getCountriesByRegion(e.target.dataset.region);
-  btnDropdown.firstElementChild.textContent = `${e.target.textContent}`;
+  if (e.target.classList.contains("region")) {
+    countryContainer.innerHTML = "";
+    getCountriesByRegion(e.target.dataset.region);
+    console.log(e.target.dataset.region);
+    btnDropdown.firstElementChild.textContent = `${e.target.textContent}`;
+  }
 });
 
 //------------------ Switch theme funtionality --------------------
@@ -164,3 +196,11 @@ document.addEventListener("keydown", function (e) {
 });
 
 //-------------------update the UI-------------------
+
+// window.addEventListener("load", function (e) {
+//   console.log(e);
+// });
+
+// searchCountry.addEventListener("submit", function (e) {
+//   console.log("okay");
+// });
