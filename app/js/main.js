@@ -10,54 +10,8 @@ const form = document.querySelector(".form");
 
 window.addEventListener("load", function (e) {
   getCountriesByRegion("asia");
+  searchCountry.focus();
 });
-
-// ----------------get visitor's location ----------------
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition, handleError);
-  } else {
-    console.error("Geolocation is not supported by this browser.");
-  }
-}
-
-// ----------------watch visitor's location----------------
-function watchLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.watchPosition(showPosition, handleError);
-  } else {
-    console.error("Geolocation is not supported by this browser.");
-  }
-}
-
-function handleError(error) {
-  let errorStr;
-  switch (error.code) {
-    case error.PERMISSION_DENIED:
-      errorStr = "User denied the request for Geolocation.";
-      break;
-    case error.POSITION_UNAVAILABLE:
-      errorStr = "Location information is unavailable.";
-      break;
-    case error.TIMEOUT:
-      errorStr = "The request to get user location timed out.";
-      break;
-    case error.UNKNOWN_ERROR:
-      errorStr = "An unknown error occurred.";
-      break;
-    default:
-      errorStr = "An unknown error occurred.";
-  }
-  console.error("Error occurred: " + errorStr);
-}
-
-function showPosition(position) {
-  console.log(
-    `Latitude: ${position.coords.latitude}, longitude: ${position.coords.longitude}`
-  );
-}
-
-getLocation();
 
 //----------------fetch data from RestCountries API----------------
 let dataByName;
@@ -73,12 +27,6 @@ const getCountriesByName = async function (countryName) {
 
     if (dataByName) {
       console.log(dataByName);
-      // let everyNames = [];
-      // data.forEach((c) => {
-      //   const name = c.altSpellings.join("-").replace(/ /g, "").toLowerCase();
-      //   everyNames = [...everyNames, name];
-      // });
-      // console.log(everyNames);
 
       dataByName.forEach((c) => {
         countryContainer.insertAdjacentHTML(
@@ -111,13 +59,10 @@ const getCountriesByRegion = async function (region) {
     dataByRegion = await res.json();
 
     if (dataByRegion) {
-      // console.log(dataByRegion);
-
       dataByRegion.forEach((c) => {
-        // console.log(c.name);
         countryContainer.insertAdjacentHTML(
           "beforeend",
-          ` <div class="country flex">
+          ` <div class="country flex" data-name="${c.name}">
           <div class="part flag">
               <img src="${c.flag}" alt="" srcset="" class="flag">
           </div>
@@ -132,12 +77,6 @@ const getCountriesByRegion = async function (region) {
       </div>`
         );
       });
-      // let everyNames = [];
-      // data.forEach((c) => {
-      //   const name = c.altSpellings.join("-").replace(/ /g, "").toLowerCase();
-      //   everyNames = [...everyNames, name];
-      // });
-      // console.log(everyNames);
     }
   }
 };
@@ -156,9 +95,6 @@ form.addEventListener("submit", function (e) {
 
 //------------------sort/show countries by region------------------
 regions.addEventListener("click", function (e) {
-  // console.log(e.target.dataset.region);
-  // console.log(e.target.textContent);
-  // console.log(btnDropdown.firstElementChild);
   if (e.target.classList.contains("region")) {
     countryContainer.innerHTML = "";
     getCountriesByRegion(e.target.dataset.region);
@@ -180,13 +116,11 @@ themeSwitchBtn.addEventListener("click", function (e) {
 });
 
 //------------------dropdown mechanism------------------
-if (window.location.pathname === "/app/index.html" || "/app/") {
-  btnDropdown.addEventListener("click", function (e) {
-    e.preventDefault();
-    regions.classList.toggle("hidden");
-    chevronIcon.classList.toggle("rotate");
-  });
-}
+btnDropdown.addEventListener("click", function (e) {
+  e.preventDefault();
+  regions.classList.toggle("hidden");
+  chevronIcon.classList.toggle("rotate");
+});
 
 document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
@@ -195,12 +129,9 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
-//-------------------update the UI-------------------
-
-// window.addEventListener("load", function (e) {
-//   console.log(e);
-// });
-
-// searchCountry.addEventListener("submit", function (e) {
-//   console.log("okay");
-// });
+countryContainer.addEventListener("click", function (e) {
+  // console.log(e.target.closest(".country").dataset.countryName);
+  let selectedCountry = e.target.closest(".country").dataset.name;
+  localStorage.setItem("cName", JSON.stringify(selectedCountry));
+  window.location.href = "http://127.0.0.1:5500/app/details.html";
+});

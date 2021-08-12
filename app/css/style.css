@@ -46,7 +46,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: all 0.3s;
+  transition: background 0.3s;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -262,10 +266,15 @@ label i {
   width: 100%;
 }
 
+.part.flag {
+  height: 280px;
+  overflow: hidden;
+}
+
 .flag {
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .details {
