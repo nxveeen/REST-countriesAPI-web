@@ -9,7 +9,7 @@ const countryContainer = document.querySelector(".countries");
 const form = document.querySelector(".form");
 
 window.addEventListener("load", function (e) {
-  getCountriesByRegion("asia");
+  getCountriesByRegion("europe");
   searchCountry.focus();
 });
 
