@@ -20,7 +20,7 @@ const renderCountry = function (data) {
         "beforeend",
         ` <div class="country flex" data-name="${c.name}">
         <div class="part flag">
-            <img src="${c.flag}" alt="" srcset="" class="flag">
+            <img src="${c.flag}" alt="" class="flag">
         </div>
         <div class="part details">
             <p class="country-name">${c.name}</p>
