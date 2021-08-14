@@ -1,0 +1,496 @@
+/* Font Import - 300,600,800 */
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
+
+/* Variables */
+:root {
+  /* Dark Mode */
+  --td-dark-blue: hsl(209, 20%, 22%);
+  --td-very-dark-blue: hsl(207, 26%, 17%);
+
+  /* Light Mode */
+  --tl-very-dark-blue: hsl(200, 15%, 8%);
+  --tl-dark-gray: hsl(0, 0%, 52%);
+  --tl-light-gray: hsl(0, 0%, 96%);
+
+  --white: hsl(0, 0%, 100%);
+
+  --tl-shadow: rgba(99, 99, 99, 0.2);
+  --td-shadow: rgba(0, 0, 0, 0.4);
+
+  /* text size */
+  --lg: 1.5rem;
+  --md: 1.25rem;
+  --sm: 1.125rem;
+}
+
+/* Theme classes */
+.light-theme {
+  --themeBg: var(--tl-light-gray);
+  --themeNavBg: var(--white);
+  --theme-font-color: var(--tl-very-dark-blue);
+  --theme-btn-bg: var(--white);
+  --theme-shadow: var(--tl-shadow);
+}
+
+.dark-theme {
+  --themeBg: var(--td-dark-blue);
+  --themeNavBg: var(--td-very-dark-blue);
+  --theme-font-color: var(--white);
+  --theme-btn-bg: var(--td-very-dark-blue);
+  --theme-shadow: var(--td-shadow);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: background 0.3s;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Nunito Sans", "Segoe UI", sans-serif;
+  font-size: 1rem;
+  background: var(--themeBg);
+  color: var(--theme-font-color);
+  /* min-height: 100vh; */
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul li {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: var(--theme-font-color);
+}
+
+.btn {
+  background-color: var(--theme-btn-bg);
+  border: none;
+  color: var(--theme-font-color);
+  /* letter-spacing: 1.5px; */
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper {
+  width: 100%;
+  padding: 0 1.25rem;
+}
+
+/*-------------------------------- Main page classes--------------------------- */
+
+header {
+  position: relative;
+  height: 5rem;
+  background: var(--themeNavBg);
+  box-shadow: var(--theme-shadow) 0px 10px 10px -10px;
+}
+
+header.flex {
+  justify-content: space-between;
+}
+
+header .title {
+  font-size: 1.125rem;
+  font-weight: 800;
+  cursor: default;
+}
+
+.theme__switch {
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  height: 50%;
+}
+
+.theme__switch i {
+  font-size: 1rem;
+  margin-right: 0.4rem;
+}
+
+main {
+  height: auto;
+}
+
+main.wrapper {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background-color: var(--themeBg);
+}
+
+.search-box {
+  width: 100%;
+  /* margin-top: 2rem; */
+}
+
+label {
+  position: relative;
+  width: 100%;
+  color: var(--theme-font-color);
+  background-color: var(--themeNavBg);
+  border-radius: 5px;
+}
+
+label > .bi.bi-search {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  margin-left: 10px;
+}
+
+label i {
+  color: var(--theme-font-color);
+  font-size: 20px;
+}
+
+.search-box input[type="text"] {
+  height: 3.75rem;
+  width: 100%;
+  padding-left: 60px;
+  font-size: 1.125rem;
+  border: none;
+  box-shadow: var(--theme-shadow) 0px 2px 8px 0px;
+  border-radius: 5px;
+  outline: none;
+  color: var(--theme-font-color);
+  background-color: var(--themeNavBg);
+}
+
+.dropdown {
+  /* margin-top: 2.5rem; */
+  padding: 0.5rem;
+  padding-top: 3rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  overflow: hidden;
+}
+
+.bi.bi-chevron-down {
+  font-size: 20px;
+  margin-left: 20px;
+  margin-top: 3px;
+  transition: all 300ms;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+.dropdown button {
+  position: relative;
+  justify-content: space-evenly;
+  height: 3.75rem;
+  width: 240px;
+  padding: 1.25rem;
+  letter-spacing: 1px;
+  box-shadow: var(--theme-shadow) 0px 2px 8px 0px;
+  color: var(--theme-font-color);
+}
+
+.dropdown p {
+  font-size: 1.125rem;
+  /* font-weight: 600; */
+}
+
+.dropdown-menu {
+  position: absolute;
+  height: auto;
+  width: 240px;
+  margin-top: 10px;
+  padding: 1.25rem;
+  background-color: var(--themeNavBg);
+  box-shadow: var(--theme-shadow) 0px 2px 8px 0px;
+  border-radius: 5px;
+  visibility: visible;
+  transform: scaleY(1);
+  transform-origin: 100% 0%;
+  transition: all 300ms;
+}
+
+.hidden {
+  transform: scale(0);
+  visibility: collapse;
+  opacity: 0;
+}
+
+.dropdown-menu li {
+  padding: 0.5rem;
+  padding-left: 0;
+  /* margin-bottom: 0.5rem; */
+}
+
+.countries {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 280px);
+  gap: 3.125rem;
+  padding-top: 2rem;
+  place-content: space-around;
+}
+
+.countries .country {
+  display: flex;
+  /* gap: 20px; */
+  /* flex-wrap: 1; */
+  flex-direction: column;
+  height: 420px;
+  /* background-color: darkgray; */
+  box-shadow: var(--theme-shadow) 0px 2px 8px 0px;
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.part {
+  flex: 1;
+  width: 50%;
+  width: 100%;
+}
+
+.part.flag {
+  height: 280px;
+  overflow: hidden;
+}
+
+.flag {
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+  object-position: center;
+}
+
+.details {
+  padding: 1.25rem;
+  font-size: 1.125rem;
+}
+
+.details .country-name {
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  /* margin-bottom: 1.125rem; */
+  margin: 1.125rem auto;
+}
+
+.details .desc {
+  font-weight: 600;
+  padding-bottom: 0.4rem;
+}
+
+.details span {
+  font-weight: 300;
+}
+
+/*-------------------------- Details Page Classes --------------------- */
+.btn.back {
+  height: 2.5rem;
+  width: 120px;
+  margin-bottom: 3rem;
+  font-size: 1.125rem;
+  box-shadow: var(--theme-shadow) 0px 2px 8px 0px;
+}
+
+.back i {
+  margin-right: 0.6rem;
+  font-size: 1.3rem;
+}
+
+.container-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.container-flag {
+  height: 15.75rem;
+  width: 100%;
+}
+
+.container-desc {
+  height: auto;
+  width: 100%;
+  padding-top: 2rem;
+}
+
+.container-desc h3 {
+  font-size: 1.25rem;
+}
+
+.container-desc .sect {
+  margin: 1.5rem 0;
+}
+
+.sect p {
+  font-size: var(--sm);
+  font-weight: 600;
+  padding-bottom: 1rem;
+}
+
+.sect span {
+  font-weight: 300;
+}
+
+.sect .flex {
+  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, auto));
+  gap: 1rem;
+}
+
+.country-btn {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, auto));
+  gap: 1rem;
+  place-content: space-around;
+  padding: 0.8rem 0.5rem;
+  box-shadow: var(--theme-shadow) 0px 2px 8px 0px;
+}
+
+/*-------------------------- Media-queries ----------------------------*/
+
+@media screen and (min-width: 900px) {
+  /*--------------------- Main page-------------------- */
+  .wrapper {
+    padding: 0 6.5rem;
+  }
+
+  header .title {
+    font-size: var(--lg);
+  }
+
+  header .theme__switch {
+    font-size: var(--md);
+  }
+
+  header .theme__switch i {
+    font-size: var(--md);
+    /* margin-top: 5px; */
+  }
+
+  .search-box {
+    position: absolute;
+    top: 126px;
+    max-width: 300px;
+    padding: 1rem;
+    padding-left: 0;
+  }
+
+  .search-box input[type="text"] {
+    font-size: var(--sm);
+  }
+
+  .dropdown {
+    float: right;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    padding-right: 0;
+  }
+
+  .countries {
+    place-content: space-between;
+  }
+
+  .countries.wrapper {
+    padding: 0;
+  }
+
+  .details {
+    font-size: var(--sm);
+  }
+
+  .details .country-name {
+    margin: 1.125rem auto;
+  }
+
+  /*-------------------- Detail page-------------------- */
+  .container-detail {
+    flex-direction: row;
+    align-items: unset;
+    margin-top: 5rem;
+  }
+
+  .container-flag {
+    display: grid;
+    place-items: center;
+    height: 25rem;
+    background-color: unset;
+    margin-top: 1rem;
+  }
+
+  .container-flag .flag {
+    width: 560px;
+    height: 100%;
+    /* background-color: aquamarine; */
+    object-fit: cover;
+    object-position: center center;
+    border: none;
+    border-radius: 8px;
+    box-shadow: var(--theme-shadow) 0px 2px 8px 4px;
+  }
+
+  .container-desc {
+    display: grid;
+    grid-template-areas:
+      "title ."
+      "des1 des2"
+      "foot foot";
+    padding: 1rem 0;
+    /* padding-left: 3rem; */
+    justify-content: space-around;
+  }
+
+  .country-title {
+    grid-area: title;
+    font-size: var(--lg);
+  }
+
+  .sect p {
+    font-size: 1rem;
+  }
+
+  .des1 {
+    grid-area: des1;
+  }
+
+  .des2 {
+    grid-area: des2;
+  }
+
+  .foot {
+    display: flex;
+    align-items: center;
+    grid-area: foot;
+    margin: 0;
+    align-items: baseline;
+  }
+
+  .border {
+    flex: 2;
+  }
+
+  .foot .surround {
+    flex: 5;
+  }
+}

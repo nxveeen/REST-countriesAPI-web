@@ -115,5 +115,6 @@ countryContainer.addEventListener("click", function (e) {
   // console.log(e.target.closest(".country").dataset.countryName);
   let selectedCountry = e.target.closest(".country").dataset.name;
   localStorage.setItem("cName", JSON.stringify(selectedCountry));
-  window.location.href = "http://127.0.0.1:5500/app/details.html";
+  console.log(window.location);
+  window.location.pathname = `/details.html`;
 });

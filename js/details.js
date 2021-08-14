@@ -1,6 +1,6 @@
 "use strict";
 
-const btnDropdown = document.querySelector("#dropdownBtn");
+const btnBack = document.querySelector(".back");
 const themeSwitchBtn = document.querySelector("#theme__switch");
 const mainWrapper = document.querySelector("main");
 const flagContainer = document.querySelector(".container-flag");
@@ -17,6 +17,11 @@ themeSwitchBtn.addEventListener("click", function (e) {
 
   //add dark theme class
   document.body.classList.toggle("dark-theme");
+});
+
+//going back to main page
+btnBack.addEventListener("click", function () {
+  window.location.pathname = `/index.html`;
 });
 
 //-----------render country data ---------------------
