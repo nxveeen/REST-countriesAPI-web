@@ -3,6 +3,9 @@
 const btnDropdown = document.querySelector("#dropdownBtn");
 const themeSwitchBtn = document.querySelector("#theme__switch");
 const mainWrapper = document.querySelector("main");
+const flagContainer = document.querySelector(".container-flag");
+const descriptionContainer = document.querySelector(".container-desc");
+const neighbourCountries = document.querySelector(".surround");
 
 //------------------ Switch theme funtionality --------------------
 themeSwitchBtn.addEventListener("click", function (e) {
@@ -15,6 +18,56 @@ themeSwitchBtn.addEventListener("click", function (e) {
   //add dark theme class
   document.body.classList.toggle("dark-theme");
 });
+
+//-----------render country data ---------------------
+const renderCountryFlag = function (data) {
+  const htmlEl = `
+  <img src="${data.flag}" alt="flag" srcset="" class="flag">
+  `;
+
+  flagContainer.insertAdjacentHTML("afterbegin", htmlEl);
+};
+
+const renderCountryDescription = function (data) {
+  const htmlEl = `<h3 class="country-title">${data.name}</h3>
+  <div class="sect des1">
+      <p>Native Name:<span> ${data.nativeName}</span></p>
+      <p>Population:<span> ${Intl.NumberFormat(navigator.locale).format(
+        data.population
+      )}</span></p>
+      <p>Region:<span> ${data.region}</span></p>
+      <p>Sub Region:<span> ${data.subregion}</span></p>
+      <p>Capital:<span> ${data.capital}</span></p>
+  </div>
+  <div class="sect des2">
+      <p>Top Level Domain:<span> ${data.topLevelDomain}</span></p>
+      <p>Currencies:<span> ${data.currencies[0].name} (${
+    data.currencies[0].symbol
+  })</span></p>
+      <p>Languages:<span> ${arrayToString(data.languages)}</span></p>
+  </div>`;
+
+  descriptionContainer.insertAdjacentHTML("afterbegin", htmlEl);
+};
+
+const renderBorders = function (borderArr) {
+  if (borderArr.length === 0) {
+    const noBorders = `<button class="btn country-btn">
+    0 Neighbouring Countries</button>`;
+    neighbourCountries.insertAdjacentHTML("afterbegin", noBorders);
+  }
+
+  borderArr.forEach((border) => {
+    fetch(`https://restcountries.eu/rest/v2/alpha/${border}`)
+      .then((res) => res.json())
+      .then((data) => {
+        const htmlEl = `<button class="btn country-btn">
+                        ${data.name}</button>`;
+        neighbourCountries.insertAdjacentHTML("afterbegin", htmlEl);
+      })
+      .catch((err) => console.log(err));
+  });
+};
 
 //-------------------get country info ---------------------------
 
@@ -33,45 +86,9 @@ const getSelectedCountryData = async function () {
 
     data.forEach((c) => {
       if (c.name === countryName) {
-        const htmlEl = `<div class="container-detail">
-        <div class="container-flag">
-            <img src="${c.flag}" alt="flag" srcset="" class="flag">
-        </div>
-        <div class="container-desc">
-            <h3 class="country-title">${c.name}</h3>
-            <div class="sect des1">
-                <p>Native Name:<span> ${c.nativeName}</span></p>
-                <p>Population:<span> ${c.population}</span></p>
-                <p>Region:<span> ${c.region}</span></p>
-                <p>Sub Region:<span> ${c.subregion}</span></p>
-                <p>Capital:<span> ${c.capital}</span></p>
-            </div>
-            <div class="sect des2">
-                <p>Top Level Domain:<span> ${c.topLevelDomain[0]}</span></p>
-                <p>Currencies:<span> ${c.currencies[0].name}</span></p>
-                <p>Languages:<span> ${arrayToString(c.languages)}</span></p>
-            </div>
-            <div class="sect foot">
-                <p class="border">Border Countries:</p>
-                <div class="flex surround">
-                    <button class="btn country-btn">
-                        France</button>
-                    <button class="btn country-btn">
-                        Germany</button>
-                    <button class="btn country-btn">
-                        Netherlands</button>
-                    <button class="btn country-btn">
-                        Netherlands</button>
-                    <button class="btn country-btn">
-                        Netherlands</button>
-                    <button class="btn country-btn">
-                        Netherlands</button>
-                </div>
-            </div>
-        </div>
-    </div>`;
-
-        mainWrapper.insertAdjacentHTML("beforeend", htmlEl);
+        renderCountryFlag(c);
+        renderCountryDescription(c);
+        renderBorders(c.borders);
       }
     });
   }

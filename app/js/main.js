@@ -13,6 +13,29 @@ window.addEventListener("load", function (e) {
   searchCountry.focus();
 });
 
+const renderCountry = function (data) {
+  if (data) {
+    data.forEach((c) => {
+      countryContainer.insertAdjacentHTML(
+        "beforeend",
+        ` <div class="country flex" data-name="${c.name}">
+        <div class="part flag">
+            <img src="${c.flag}" alt="" srcset="" class="flag">
+        </div>
+        <div class="part details">
+            <p class="country-name">${c.name}</p>
+            <p class="desc">Population: <span>${new Intl.NumberFormat(
+              navigator.language
+            ).format(c.population)}</span></p>
+            <p class="desc">Region: <span>${c.region}</span></p>
+            <p class="desc">Capital: <span>${c.capital}</span></p>
+        </div>
+    </div>`
+      );
+    });
+  }
+};
+
 //----------------fetch data from RestCountries API----------------
 let dataByName;
 let dataByRegion;
@@ -25,28 +48,7 @@ const getCountriesByName = async function (countryName) {
     );
     dataByName = await res.json();
 
-    if (dataByName) {
-      console.log(dataByName);
-
-      dataByName.forEach((c) => {
-        countryContainer.insertAdjacentHTML(
-          "beforeend",
-          ` <div class="country flex">
-          <div class="part flag">
-              <img src="${c.flag}" alt="" srcset="" class="flag">
-          </div>
-          <div class="part details">
-              <p class="country-name">${c.name}</p>
-              <p class="desc">Population: <span>${new Intl.NumberFormat(
-                navigator.language
-              ).format(c.population)}</span></p>
-              <p class="desc">Region: <span>${c.region}</span></p>
-              <p class="desc">Capital: <span>${c.capital}</span></p>
-          </div>
-      </div>`
-        );
-      });
-    }
+    renderCountry(dataByName);
   }
 };
 
@@ -57,27 +59,7 @@ const getCountriesByRegion = async function (region) {
       `https://restcountries.eu/rest/v2/region/${region}`
     );
     dataByRegion = await res.json();
-
-    if (dataByRegion) {
-      dataByRegion.forEach((c) => {
-        countryContainer.insertAdjacentHTML(
-          "beforeend",
-          ` <div class="country flex" data-name="${c.name}">
-          <div class="part flag">
-              <img src="${c.flag}" alt="" srcset="" class="flag">
-          </div>
-          <div class="part details">
-              <p class="country-name">${c.name}</p>
-              <p class="desc">Population: <span>${new Intl.NumberFormat(
-                navigator.language
-              ).format(c.population)}</span></p>
-              <p class="desc">Region: <span>${c.region}</span></p>
-              <p class="desc">Capital: <span>${c.capital}</span></p>
-          </div>
-      </div>`
-        );
-      });
-    }
+    renderCountry(dataByRegion);
   }
 };
 

@@ -274,7 +274,8 @@ label i {
 .flag {
   height: 100%;
   width: 100%;
-  object-fit: contain;
+  object-fit: fill;
+  object-position: center;
 }
 
 .details {
@@ -442,8 +443,11 @@ label i {
     width: 560px;
     height: 100%;
     /* background-color: aquamarine; */
+    object-fit: cover;
+    object-position: center center;
     border: none;
     border-radius: 8px;
+    box-shadow: var(--theme-shadow) 0px 2px 8px 4px;
   }
 
   .container-desc {
