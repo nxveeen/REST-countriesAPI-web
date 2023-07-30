@@ -44,7 +44,7 @@ let dataByRegion;
 const getCountriesByName = async function (countryName) {
   if (countryName) {
     const res = await fetch(
-      `https://restcountries.com/rest/v3.1/name/${countryName}`
+      `https://restcountries.com/v3.1/name/${countryName}`
     );
     dataByName = await res.json();
 
@@ -56,7 +56,7 @@ const getCountriesByName = async function (countryName) {
 const getCountriesByRegion = async function (region) {
   if (region) {
     const res = await fetch(
-      `https://restcountries.com/rest/v3.1/region/${region}`
+      `https://restcountries.com/v3.1/region/${region}`
     );
     dataByRegion = await res.json();
     renderCountry(dataByRegion);
